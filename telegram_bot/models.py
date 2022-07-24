@@ -1,5 +1,5 @@
-from django.utils.timezone import localtime, now
 from django.db import models
+from django.utils.timezone import localtime, now
 
 
 class DrawQuerySet(models.QuerySet):
@@ -141,7 +141,7 @@ class Rebus(models.Model):
     image = models.ImageField('Изображения')
     published = models.BooleanField('Опубликовать', default=False)
     hint = models.TextField('Подсказка', blank=True)
-    
+
     objects = RebusQuerySet.as_manager()
 
     class Meta:
@@ -204,7 +204,7 @@ class RebusAttempt(models.Model):
         blank=True,
         null=True,
     )
-    
+
     objects = RebusAttemptQuerySet.as_manager()
 
     class Meta:
@@ -289,7 +289,7 @@ class PollResult(models.Model):
         blank=True,
         null=True,
     )
-    
+
     objects = PollResultQuerySet.as_manager()
 
     class Meta:

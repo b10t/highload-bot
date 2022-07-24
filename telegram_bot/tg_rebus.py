@@ -1,47 +1,27 @@
 import os
-import time
-import rollbar
 import textwrap
+import time
+
 import phonenumbers
+import rollbar
 import telegram.ext
-
 from django.utils.timezone import now
-
 from telegram import ReplyKeyboardMarkup
+from telegram.ext import (CallbackQueryHandler, CommandHandler, Filters,
+                          MessageHandler, PollAnswerHandler, Updater)
 
-from telegram.ext import (
-    CallbackQueryHandler,
-    PollAnswerHandler,
-    CommandHandler,
-    Filters,
-    MessageHandler,
-    Updater
-    )
-
-from .models import Player, Rebus, PollResult, RebusAttempt
-
-from .tg_lib import (
-    check_answer,
-    check_draws,
-    get_rest_time_to_draw,
-    get_rest_time_to_end_draw,
-    get_message_of_waiting_to_start_draw,
-    get_message_of_waiting_to_end_draw,
-    go_to_next_rebus,
-    read_poll_questions,
-    show_auth_keyboard,
-    show_rebus_start_keyboard,
-    show_poll_start_keyboard,
-    show_send_contact_keyboard,
-    show_rebus,
-    show_hint,
-    show_end_message,
-    show_select_competition_keyboard,
-    show_next_question,
-    show_end_poll_message,
-    show_message_about_draw_status
-    )
-
+from .models import Player, PollResult, Rebus, RebusAttempt
+from .tg_lib import (check_answer, check_draws,
+                     get_message_of_waiting_to_end_draw,
+                     get_message_of_waiting_to_start_draw,
+                     get_rest_time_to_draw, get_rest_time_to_end_draw,
+                     go_to_next_rebus, read_poll_questions, show_auth_keyboard,
+                     show_end_message, show_end_poll_message, show_hint,
+                     show_message_about_draw_status, show_next_question,
+                     show_poll_start_keyboard, show_rebus,
+                     show_rebus_start_keyboard,
+                     show_select_competition_keyboard,
+                     show_send_contact_keyboard)
 
 rollbar.init(os.getenv('ROLLBAR_TOKEN'))
 

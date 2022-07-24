@@ -1,15 +1,8 @@
 import rollbar
 from django.conf import settings
 from django.core.management import BaseCommand
-
-from telegram_bot.tg_rebus import (
-    TgDialogBot,
-    start,
-    handle_auth,
-    handle_poll,
-    handle_rebus,
-    handle_select
-)
+from telegram_bot.tg_rebus import (TgDialogBot, handle_auth, handle_poll,
+                                   handle_rebus, handle_select, start)
 
 
 class Command(BaseCommand):

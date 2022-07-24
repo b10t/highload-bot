@@ -1,19 +1,15 @@
 from django import forms
-from django.urls import reverse
 from django.contrib import admin
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.timezone import now
-
 from import_export import resources
-from import_export.fields import Field
 from import_export.admin import ImportExportModelAdmin
+from import_export.fields import Field
 
-from .models import (
-    Player, Draw,
-    Rebus, RebusAttempt, Answer,
-    PollResult, PollQuestionAnswerPair
-)
+from .models import (Answer, Draw, Player, PollQuestionAnswerPair, PollResult,
+                     Rebus, RebusAttempt)
 
 
 class PlayerResources(resources.ModelResource):
@@ -110,6 +106,7 @@ class DrawForm(forms.ModelForm):
 @admin.register(Draw)
 class DrawAdmin(admin.ModelAdmin):
     form = DrawForm
+    list_filter = (DrawFilter, )
     ordering = ['-end_at']
     search_fields = ['title']
     list_display = ['title',
